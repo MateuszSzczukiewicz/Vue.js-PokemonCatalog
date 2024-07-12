@@ -1,18 +1,18 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
-import BaseCatalog from "@/components/organisms/BaseCatalog.vue";
+import BaseCatalog from '@/components/templates/BaseCatalog.vue';
 
 const routes: Array<RouteRecordRaw> = [
-  {
-    path: "/",
-    name: "home",
-    component: BaseCatalog,
-  },
+	{
+		path: '/',
+		name: 'catalog',
+		component: BaseCatalog,
+	},
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
+	history: createWebHistory(process.env.BASE_URL),
+	routes,
 });
 
 export default router;
