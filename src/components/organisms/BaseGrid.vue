@@ -28,7 +28,7 @@ export default defineComponent({
 
 		const fetchCards = async () => {
 			try {
-				const fetchedCards = await getCards();
+				const fetchedCards = await getCards({ page: 1, pageSize: 4 });
 
 				if (fetchedCards) {
 					cards.value = fetchedCards;
@@ -52,8 +52,8 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .grid {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 1rem;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 25px;
 }
 </style>

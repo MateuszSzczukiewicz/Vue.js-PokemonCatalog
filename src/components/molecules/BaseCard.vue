@@ -1,7 +1,12 @@
 <template>
 	<div class="card">
 		<CardTop :card="card" />
-		<img :src="card.images.large" :alt="card.name" />
+		<img
+			loading="lazy"
+			class="card__img"
+			:src="card.images.large"
+			:alt="card.name"
+		/>
 		<CardBottom :card="card" />
 	</div>
 </template>
@@ -28,5 +33,10 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .card {
+	width: fit-content;
+
+	&__img {
+		width: 250px;
+	}
 }
 </style>
