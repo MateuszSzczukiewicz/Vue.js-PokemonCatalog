@@ -1,12 +1,12 @@
 <template>
 	<article class="catalog">
-		<BaseGrid />
-		<CardButton />
+		<BaseGrid ref="baseGridRef" @load-more="loadMoreCards" />
+		<CardButton @load-more="triggerLoadMore" />
 	</article>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import BaseGrid from '@/components/organisms/BaseGrid.vue';
 import CardButton from '../atoms/CardButton.vue';
 
@@ -15,6 +15,19 @@ export default defineComponent({
 	components: {
 		BaseGrid,
 		CardButton,
+	},
+	setup() {
+		const baseGridRef = ref<InstanceType<typeof BaseGrid> | null>(null);
+
+		const loadMoreCards = () => {
+			baseGridRef?.value?.loadMore();
+		};
+
+		const triggerLoadMore = () => {
+			baseGridRef?.value?.handleLoadMore();
+		};
+
+		return { loadMoreCards, triggerLoadMore };
 	},
 });
 </script>

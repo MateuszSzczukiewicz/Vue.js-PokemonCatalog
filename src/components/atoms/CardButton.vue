@@ -9,9 +9,13 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
 	name: 'CardButton',
-	props: {},
-	setup() {
-		return {};
+	emits: ['load-more'],
+	setup(props, { emit }) {
+		const emitLoadMore = () => {
+			emit('load-more');
+		};
+
+		return { emitLoadMore };
 	},
 });
 </script>

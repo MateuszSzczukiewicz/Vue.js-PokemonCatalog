@@ -21,14 +21,15 @@ export default defineComponent({
 	components: {
 		BaseCard,
 	},
-	setup() {
+	setup(props, { emit }) {
 		const cards = ref<Card[] | null>(null);
 		const loading = ref(true);
 		const error = ref<string | null>(null);
+		const currentPage = ref(1);
 
-		const fetchCards = async () => {
+		const fetchCards = async (page = 1) => {
 			try {
-				const fetchedCards = await getCards({ page: 1, pageSize: 4 });
+				const fetchedCards = await getCards({ page, pageSize: 4 });
 
 				if (fetchedCards) {
 					cards.value = fetchedCards;
@@ -44,9 +45,18 @@ export default defineComponent({
 				loading.value = false;
 			}
 		};
-		onMounted(fetchCards);
 
-		return { cards, loading, error };
+		const loadMore = () => {
+			fetchCards(currentPage.value + 1);
+		};
+
+		const handleLoadMore = () => {
+			emit('loadMore');
+		};
+
+		onMounted(() => fetchCards());
+
+		return { cards, loading, error, handleLoadMore, loadMore };
 	},
 });
 </script>
