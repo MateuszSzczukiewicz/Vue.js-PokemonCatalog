@@ -1,7 +1,7 @@
 <template>
 	<div class="card-top">
-		<h2>{{ card.name }}</h2>
-		<h3>{{ card.nationalPokedexNumbers[0] }}</h3>
+		<h2 class="card-top__header">{{ card.name }}</h2>
+		<p class="card-top__number">Nr: {{ card.nationalPokedexNumbers[0] }}</p>
 	</div>
 </template>
 
@@ -21,5 +21,17 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .card-top {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	&__header {
+		font-weight: bold;
+		font-size: 24px;
+	}
+
+	&__number {
+		font-size: 16px;
+	}
 }
 </style>
