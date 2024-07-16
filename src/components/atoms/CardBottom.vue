@@ -1,8 +1,13 @@
 <template>
 	<div class="card-bottom">
-		<p>Supertype: {{ card.supertype }}</p>
-		<p>Subtype: {{ card.subtypes.join(', ') }}</p>
-		<p>Rarity: {{ card.rarity }}</p>
+		<p>
+			<span class="card-bottom__header">Supertype:</span> {{ card.supertype }}
+		</p>
+		<p>
+			<span class="card-bottom__header">Subtype:</span>
+			{{ card.subtypes.join(', ') }}
+		</p>
+		<p><span class="card-bottom__header">Rarity:</span> {{ card.rarity }}</p>
 	</div>
 </template>
 
@@ -22,5 +27,10 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .card-bottom {
+	font-size: 16px;
+
+	&__header {
+		font-weight: bold;
+	}
 }
 </style>
