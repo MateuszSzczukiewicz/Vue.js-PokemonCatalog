@@ -1,5 +1,6 @@
 <template>
 	<article class="catalog">
+		<BaseHeader />
 		<BaseGrid ref="baseGridRef" @load-more="loadMoreCards" />
 		<CardButton @load-more="triggerLoadMore" />
 	</article>
@@ -8,13 +9,15 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import BaseGrid from '@/components/organisms/BaseGrid.vue';
-import CardButton from '../atoms/CardButton.vue';
+import CardButton from '@/components/atoms/CardButton.vue';
+import BaseHeader from '@/components/molecules/BaseHeader.vue';
 
 export default defineComponent({
 	name: 'BaseCatalog',
 	components: {
 		BaseGrid,
 		CardButton,
+		BaseHeader,
 	},
 	setup() {
 		const baseGridRef = ref<InstanceType<typeof BaseGrid> | null>(null);
@@ -36,5 +39,9 @@ export default defineComponent({
 .catalog {
 	margin: 0 auto;
 	width: 1200px;
+	display: flex;
+	flex-direction: column;
+	align-items: space-around;
+	gap: 30px;
 }
 </style>

@@ -23,6 +23,7 @@ export default defineComponent({
 @import '@/assets/scss/global.scss';
 .button {
 	background-color: $primary-color;
+	margin: 0 auto;
 	border: 4px solid $primary-color;
 	padding: 20px 50px;
 	font-size: 24px;
