@@ -1,5 +1,5 @@
 <template>
-	<div class="button">
+	<div @click="emitLoadMore" class="button">
 		<p class="button__text">Load More</p>
 	</div>
 </template>
@@ -21,9 +21,10 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 @import '@/assets/scss/global.scss';
+
 .button {
 	background-color: $primary-color;
-	margin: 0 auto;
+	margin: 30px auto;
 	border: 4px solid $primary-color;
 	padding: 20px 50px;
 	font-size: 24px;

@@ -1,8 +1,8 @@
 <template>
 	<article class="catalog">
 		<BaseHeader />
-		<BaseGrid ref="baseGridRef" @load-more="loadMoreCards" />
-		<CardButton @load-more="triggerLoadMore" />
+		<BaseGrid ref="baseGridRef" />
+		<CardButton @load-more="loadMoreCards" />
 	</article>
 </template>
 
@@ -26,11 +26,7 @@ export default defineComponent({
 			baseGridRef?.value?.loadMore();
 		};
 
-		const triggerLoadMore = () => {
-			baseGridRef?.value?.handleLoadMore();
-		};
-
-		return { loadMoreCards, triggerLoadMore };
+		return { loadMoreCards, baseGridRef };
 	},
 });
 </script>

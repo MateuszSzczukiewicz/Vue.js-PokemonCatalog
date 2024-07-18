@@ -21,7 +21,7 @@ export default defineComponent({
 	components: {
 		BaseCard,
 	},
-	setup(props, { emit }) {
+	setup() {
 		const cards = ref<Card[] | null>(null);
 		const loading = ref(true);
 		const error = ref<string | null>(null);
@@ -33,7 +33,7 @@ export default defineComponent({
 
 				if (fetchedCards) {
 					cards.value = fetchedCards;
-					console.log(fetchedCards);
+					currentPage.value = page;
 				}
 			} catch (err) {
 				if (err instanceof Error) {
@@ -46,17 +46,13 @@ export default defineComponent({
 			}
 		};
 
+		onMounted(() => fetchCards());
+
 		const loadMore = () => {
 			fetchCards(currentPage.value + 1);
 		};
 
-		const handleLoadMore = () => {
-			emit('loadMore');
-		};
-
-		onMounted(() => fetchCards());
-
-		return { cards, loading, error, handleLoadMore, loadMore };
+		return { cards, loading, error, loadMore };
 	},
 });
 </script>
