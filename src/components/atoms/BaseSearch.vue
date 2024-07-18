@@ -1,13 +1,10 @@
 <template>
-	<div class="base-search">
-		<input
-			class="base-search__input"
-			type="text"
-			placeholder="Search"
-			autocomplete="off"
-		/>
-		<label for="search">Search</label>
-	</div>
+	<input
+		class="base-search"
+		type="text"
+		placeholder="Search"
+		autocomplete="off"
+	/>
 </template>
 
 <script lang="ts">
@@ -25,14 +22,17 @@ export default defineComponent({
 @import '@/assets/scss/global.scss';
 
 .base-search {
-	&__input {
-		padding: 10px 20px;
-		width: 300px;
-		height: 42px;
-		border: none;
-		border-bottom: 3px solid $secondary-color--light;
-		transition: border-bottom-color 0.3s;
-		font-size: 16px;
+	padding: 10px 20px;
+	width: 300px;
+	height: 42px;
+	border: none;
+	border-bottom: 3px solid $secondary-color--light;
+	transition: border-bottom-color 0.3s;
+	font-size: 16px;
+
+	&:focus {
+		outline: none;
+		border-color: $primary-color--light;
 	}
 }
 </style>
