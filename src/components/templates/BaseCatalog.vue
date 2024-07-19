@@ -3,6 +3,7 @@
 		<BaseHeader />
 		<BaseGrid ref="baseGridRef" />
 		<CardButton @load-more="loadMoreCards" />
+		<BaseSpinner />
 	</article>
 </template>
 
@@ -11,6 +12,7 @@ import { defineComponent, ref } from 'vue';
 import BaseGrid from '@/components/organisms/BaseGrid.vue';
 import CardButton from '@/components/atoms/CardButton.vue';
 import BaseHeader from '@/components/molecules/BaseHeader.vue';
+import BaseSpinner from '@/components/atoms/BaseSpinner.vue';
 
 export default defineComponent({
 	name: 'BaseCatalog',
@@ -18,6 +20,7 @@ export default defineComponent({
 		BaseGrid,
 		CardButton,
 		BaseHeader,
+		BaseSpinner,
 	},
 	setup() {
 		const baseGridRef = ref<InstanceType<typeof BaseGrid> | null>(null);
