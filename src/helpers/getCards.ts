@@ -16,7 +16,7 @@ export const getCards = async ({
 		const response: AxiosResponse<ApiResponse> = await get(
 			API_URL + `?page=${page}&pageSize=${pageSize}`
 		);
-		return response.data.data;
+		return response.data.data as Card[];
 	} catch (err) {
 		console.warn(`Error fetching cards: ${err}`);
 	}

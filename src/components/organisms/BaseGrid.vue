@@ -22,7 +22,8 @@ export default defineComponent({
 		BaseCard,
 	},
 	setup() {
-		const cards = ref<Card[] | null>(null);
+		const cards = ref<Card[] | null>([]);
+		const cardsArray: Array<Card> = [];
 		const loading = ref(true);
 		const error = ref<string | null>(null);
 		const currentPage = ref(1);
@@ -32,7 +33,8 @@ export default defineComponent({
 				const fetchedCards = await getCards({ page, pageSize: 4 });
 
 				if (fetchedCards) {
-					cards.value = fetchedCards;
+					cardsArray.push(...fetchedCards);
+					cards.value = [...cardsArray];
 					currentPage.value = page;
 				}
 			} catch (err) {
