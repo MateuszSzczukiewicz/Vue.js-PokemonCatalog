@@ -16,10 +16,6 @@ export default defineComponent({
 		BaseTitle,
 		BaseSearch,
 	},
-	props: {},
-	setup() {
-		return {};
-	},
 });
 </script>
 <style lang="scss" scoped>

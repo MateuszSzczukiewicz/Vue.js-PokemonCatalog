@@ -12,10 +12,6 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
 	name: 'BaseSearch',
-	props: {},
-	setup() {
-		return {};
-	},
 });
 </script>
 <style lang="scss" scoped>

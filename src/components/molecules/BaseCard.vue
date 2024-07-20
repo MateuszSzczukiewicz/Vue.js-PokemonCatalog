@@ -15,7 +15,7 @@
 import { defineComponent, PropType } from 'vue';
 import { type Card } from '@/types/cart.type';
 import CardTop from '@/components/atoms/CardTop.vue';
-import CardBottom from '../atoms/CardBottom.vue';
+import CardBottom from '@/components/atoms/CardBottom.vue';
 
 export default defineComponent({
 	name: 'BaseCard',

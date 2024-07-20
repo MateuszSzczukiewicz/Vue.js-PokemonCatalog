@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { Card } from '@/types/cart.type';
+import { type Card } from '@/types/cart.type';
 import { defineComponent, PropType } from 'vue';
 
 export default defineComponent({
