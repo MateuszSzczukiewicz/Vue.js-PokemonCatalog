@@ -1,6 +1,8 @@
 <template>
 	<section>
-		<div v-if="loading">Loading...</div>
+		<div v-if="loading">
+			<BaseSpinner />
+		</div>
 		<div v-else-if="error">{{ error }}</div>
 		<div v-else>
 			<div class="grid">
@@ -15,20 +17,23 @@ import { defineComponent, ref, onMounted } from 'vue';
 import { getCards } from '@/helpers/getCards';
 import { type Card } from '@/types/cart.type';
 import BaseCard from '@/components/molecules/BaseCard.vue';
+import BaseSpinner from '@/components/atoms/BaseSpinner.vue';
 
 export default defineComponent({
 	name: 'BaseGrid',
 	components: {
 		BaseCard,
+		BaseSpinner,
 	},
 	setup() {
 		const cards = ref<Card[] | null>([]);
 		const cardsArray: Array<Card> = [];
-		const loading = ref(true);
+		const loading = ref<boolean>(true);
 		const error = ref<string | null>(null);
-		const currentPage = ref(1);
+		const currentPage = ref<number>(1);
 
 		const fetchCards = async (page = 1) => {
+			loading.value = true;
 			try {
 				const fetchedCards = await getCards({ page, pageSize: 4 });
 

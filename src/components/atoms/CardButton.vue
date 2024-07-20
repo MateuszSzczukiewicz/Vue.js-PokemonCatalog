@@ -1,18 +1,31 @@
 <template>
-	<div @click="emitLoadMore" class="button">
+	<div @click="emitLoadMore" class="button" v-if="!isLoading">
 		<p class="button__text">Load More</p>
 	</div>
+	<BaseSpinner v-else />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import BaseSpinner from '@/components/atoms/BaseSpinner.vue';
 
 export default defineComponent({
 	name: 'CardButton',
+	components: {
+		BaseSpinner,
+	},
 	emits: ['load-more'],
+	props: {
+		isLoading: {
+			type: Boolean,
+			required: true,
+		},
+	},
 	setup(props, { emit }) {
 		const emitLoadMore = () => {
-			emit('load-more');
+			if (!props.isLoading) {
+				emit('load-more');
+			}
 		};
 
 		return { emitLoadMore };
