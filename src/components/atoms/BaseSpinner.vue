@@ -31,6 +31,7 @@ export default defineComponent({
 	display: flex;
 	justify-content: center;
 	gap: 10px;
+	margin: 30px auto;
 	align-items: center;
 
 	&__dot {

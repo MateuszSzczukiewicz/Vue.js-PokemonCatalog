@@ -1,8 +1,8 @@
 <template>
-	<div @click="emitLoadMore" class="button" v-if="!isLoading">
+	<BaseSpinner v-if="isLoading" />
+	<div @click="emitLoadMore" class="button" v-else>
 		<p class="button__text">Load More</p>
 	</div>
-	<BaseSpinner v-else />
 </template>
 
 <script lang="ts">
