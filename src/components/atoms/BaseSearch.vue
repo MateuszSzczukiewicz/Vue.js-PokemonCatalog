@@ -4,14 +4,25 @@
 		type="text"
 		placeholder="Search"
 		autocomplete="off"
+		v-model="searchQuery"
 	/>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref, watch, inject } from 'vue';
 
 export default defineComponent({
 	name: 'BaseSearch',
+	emits: ['update:SearchQuery'],
+	setup() {
+		const searchQuery = inject('searchQuery', ref<string>(''));
+
+		watch(searchQuery, (newQuery: string) => {
+			searchQuery.value = newQuery;
+		});
+
+		return { searchQuery };
+	},
 });
 </script>
 <style lang="scss" scoped>

@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, provide } from 'vue';
 import BaseGrid from '@/components/organisms/BaseGrid.vue';
 import CardButton from '@/components/atoms/CardButton.vue';
 import BaseHeader from '@/components/molecules/BaseHeader.vue';
