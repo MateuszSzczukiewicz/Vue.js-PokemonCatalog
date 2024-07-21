@@ -9,18 +9,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, inject } from 'vue';
+import { defineComponent, inject } from 'vue';
 
 export default defineComponent({
 	name: 'BaseSearch',
-	emits: ['update:SearchQuery'],
 	setup() {
-		const searchQuery = inject('searchQuery', ref<string>(''));
+		const searchQuery = inject('searchQuery');
 
-		watch(searchQuery, (newQuery: string) => {
-			searchQuery.value = newQuery;
-		});
-
+		if (!searchQuery) {
+			throw new Error('Search query is not provided');
+		}
 		return { searchQuery };
 	},
 });

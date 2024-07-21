@@ -22,16 +22,19 @@ export default defineComponent({
 	setup() {
 		const baseGridRef = ref<InstanceType<typeof BaseGrid> | null>(null);
 		const isLoading = ref<boolean>(false);
+		const searchQuery = ref<string>('');
+
+		provide('searchQuery', searchQuery);
 
 		const loadMoreCards = async () => {
-			if (baseGridRef.value) {
+			if (baseGridRef.value && baseGridRef.value.loadMore) {
 				isLoading.value = true;
-				await baseGridRef?.value?.loadMore();
+				await baseGridRef.value.loadMore();
 				isLoading.value = false;
 			}
 		};
 
-		return { loadMoreCards, baseGridRef, isLoading };
+		return { loadMoreCards, baseGridRef, isLoading, searchQuery };
 	},
 });
 </script>

@@ -1,9 +1,6 @@
 <template>
 	<section>
-		<div v-if="loading">
-			<BaseSpinner />
-		</div>
-		<div v-else-if="error">{{ error }}</div>
+		<div v-if="error">{{ error }}</div>
 		<div v-else>
 			<div class="grid">
 				<BaseCard v-for="card in filteredCards" :key="card.id" :card="card" />
@@ -17,21 +14,23 @@ import { defineComponent, ref, onMounted, inject, computed } from 'vue';
 import { getCards } from '@/helpers/getCards';
 import { type Card } from '@/types/cart.type';
 import BaseCard from '@/components/molecules/BaseCard.vue';
-import BaseSpinner from '@/components/atoms/BaseSpinner.vue';
 
 export default defineComponent({
 	name: 'BaseGrid',
 	components: {
 		BaseCard,
-		BaseSpinner,
 	},
 	setup() {
-		const cards = ref<Card[] | null>([]);
+		const cards = ref<Card[]>([]);
 		const cardsArray: Array<Card> = [];
 		const loading = ref<boolean>(true);
 		const error = ref<string | null>(null);
 		const currentPage = ref<number>(1);
-		const searchQuery = inject('SearchQuery');
+		const searchQuery = inject('searchQuery', ref<string>(''));
+
+		if (!searchQuery) {
+			throw new Error('Search query is not provided in BaseGrid');
+		}
 
 		const fetchCards = async (page = 1) => {
 			loading.value = true;
@@ -54,20 +53,17 @@ export default defineComponent({
 			}
 		};
 
-		onMounted(() => fetchCards());
-
-		const loadMore = () => {
-			fetchCards(currentPage.value + 1);
+		const loadMore = async () => {
+			await fetchCards(currentPage.value + 1);
 		};
 
 		const filteredCards = computed(() => {
-			if (!searchQuery.value) {
-				return cards;
-			}
 			return cards.value.filter((card) =>
 				card.name.toLowerCase().includes(searchQuery.value.toLowerCase())
 			);
 		});
+
+		onMounted(() => fetchCards());
 
 		return { cards, loading, error, loadMore, filteredCards };
 	},
